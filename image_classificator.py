@@ -5,6 +5,7 @@ from tensorflow.python.keras import layers
 from tensorflow.python.keras.models import Sequential
 import pathlib
 import matplotlib.pyplot as plt
+from PIL import Image
 
 
 class ImageClassificator:
@@ -142,9 +143,10 @@ def create_model():
     model.train_model(20)
     model.save_model("saved_model/model2")
 
-    sunflower_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/592px-Red_sunflower.jpg"
-    sunflower_path = tf.keras.utils.get_file("Red_sunflower", origin=sunflower_url)
-    img = tf.keras.utils.load_img(sunflower_path, target_size=(img_height, img_width))
+    image_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/592px-Red_sunflower.jpg"
+    image_path = tf.keras.utils.get_file("Red_sunflower", origin=image_url)
+
+    img = tf.keras.utils.load_img(image_path, target_size=(img_height, img_width))
     img_array = tf.keras.utils.img_to_array(img)
     img_array = tf.expand_dims(img_array, 0)
 
@@ -163,10 +165,12 @@ def load_model():
         "flower_photos",
     )
 
-    sunflower_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/592px-Red_sunflower.jpg"
-    sunflower_path = tf.keras.utils.get_file("Red_sunflower", origin=sunflower_url)
+    image_url = "https://storage.googleapis.com/pod_public/1300/127233.jpg"
+    image_path = tf.keras.utils.get_file(
+        "photo_name", origin=image_url
+    )  # if you changing photo url, change name of the picture as well, because it will try to open older picture
 
-    img = tf.keras.utils.load_img(sunflower_path, target_size=(img_height, img_width))
+    img = tf.keras.utils.load_img(image_path, target_size=(img_height, img_width))
     img_array = tf.keras.utils.img_to_array(img)
     img_array = tf.expand_dims(img_array, 0)
 
