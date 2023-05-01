@@ -140,8 +140,8 @@ def create_model():
     model.cache_dataset()
     model.add_data_augmentation()
     model.create_model()
-    model.train_model(20)
-    model.save_model("saved_model/model2")
+    model.train_model(50)
+    model.save_model("saved_model/model_50_epoch")
 
     image_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/592px-Red_sunflower.jpg"
     image_path = tf.keras.utils.get_file("Red_sunflower", origin=image_url)
@@ -159,15 +159,15 @@ def load_model():
     img_width = 180
     batch_size = 32
     model = ImageClassificator(img_height, img_width, batch_size)
-    model.load_model("saved_model/my_model")
+    model.load_model("saved_model/model_50_epoch")
     model.load_dataset(
         "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz",
         "flower_photos",
     )
 
-    image_url = "https://storage.googleapis.com/pod_public/1300/127233.jpg"
+    image_url = "https://images.squarespace-cdn.com/content/v1/56bf55504c2f85a60a9b9fe5/1635897793784-OD3181KEQJ2AV5QTEEK6/SunflowerSunset.jpg?format=1000w"
     image_path = tf.keras.utils.get_file(
-        "photo_name", origin=image_url
+        "5", origin=image_url
     )  # if you changing photo url, change name of the picture as well, because it will try to open older picture
 
     img = tf.keras.utils.load_img(image_path, target_size=(img_height, img_width))
